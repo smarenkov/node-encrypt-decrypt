@@ -6,6 +6,7 @@ const json = {
   name: "Simon",
 };
 
+try {
 const data = Buffer.from(JSON.stringify(json), "utf8");
 
 const key = randomBytes(32);
@@ -15,7 +16,11 @@ const cipher = createCipheriv(AES_ALGO, key, iv);
 const encrypted = Buffer.concat([cipher.update(data), cipher.final()]);
 
 console.log("=== Encryption Details ===");
-console.log(`🔑 AES Key:      ${key.toString("hex")}`);
-console.log(`🧂 IV:           ${iv.toString("hex")}`);
-console.log(`📦 Encrypted:    ${encrypted.toString("hex")}`);
-console.log("===========================");
+  console.log(`🔑 AES Key:      ${key.toString("hex")}`);
+  console.log(`🧂 IV:           ${iv.toString("hex")}`);
+  console.log(`📦 Encrypted:    ${encrypted.toString("hex")}`);
+  console.log("===========================");
+} catch (error: any) {
+  console.error("Error during encryption:", error.message);
+  process.exit(1);
+}

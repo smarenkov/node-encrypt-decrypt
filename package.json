@@ -1,12 +1,11 @@
 {
   "name": "node-encrypt-decrypt",
   "version": "1.0.0",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "encrypt": "node ./src/encrypt.ts",
-    "decrypt": "node ./src/decrypt.ts"
+    "encrypt": "ts-node --esm ./src/encrypt.ts",
+    "decrypt": "ts-node --esm ./src/decrypt.ts"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +20,7 @@
   "devDependencies": {
     "@types/eccrypto": "^1.1.6",
     "@types/node": "^22.14.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
 }

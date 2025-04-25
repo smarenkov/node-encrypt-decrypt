@@ -1,13 +1,36 @@
 import { createDecipheriv } from "crypto";
 
-const privateKeyHex = "16d29211f56b2cfdf8e1ef81d699397ea6bc56b3d66dcb484fd62eaa336181a4";
-const ivHex = "a81e7492654374bb704a151895e64455";
-const encryptedHex = '9afe9a5bf9744768ad5f2e4d23344581287e40a0aad69b2f08949d68a0fc769d'
+const args = process.argv.slice(2);
+const argMap: { [key: string]: string } = {};
 
-const decipher = createDecipheriv("aes-256-cbc", Buffer.from(privateKeyHex, "hex"), Buffer.from(ivHex, "hex"));
-const decrypted = Buffer.concat([decipher.update(Buffer.from(encryptedHex, "hex")), decipher.final()]);
-const obj = JSON.parse(decrypted.toString("utf8"));
+args.forEach((arg, index) => {
+  if (arg.startsWith('-')) {
+    const key = arg.slice(1);
+    const value = args[index + 1];
+    if (value && !value.startsWith('-')) {
+      argMap[key] = value;
+    }
+  }
+});
 
-console.log("=== Decryption Result ===");
-console.log("📝 Decrypted JSON:", obj);
-console.log("==========================");
+const privateKeyHex = argMap.privateKeyHex;
+const ivHex = argMap.ivHex;
+const encryptedHex = argMap.encryptedHex;
+
+if (!privateKeyHex || !ivHex || !encryptedHex) {
+  console.error("Missing required arguments");
+  process.exit(1);
+}
+
+try {
+  const decipher = createDecipheriv("aes-256-cbc", Buffer.from(privateKeyHex, "hex"), Buffer.from(ivHex, "hex"));
+  const decrypted = Buffer.concat([decipher.update(Buffer.from(encryptedHex, "hex")), decipher.final()]);
+  const object = JSON.parse(decrypted.toString("utf8"));
+
+  console.log("=== Decryption Result ===");
+  console.log("📝 Decrypted JSON:", object);
+  console.log("==========================");
+} catch (error: any) {
+  console.error("Error during decryption:", error.message);
+  process.exit(1);
+}
