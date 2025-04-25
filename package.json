@@ -1,0 +1,26 @@
+{
+  "name": "rsa-json-crypto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "encrypt": "node ./src/encrypt.ts",
+    "decrypt": "node ./src/decrypt.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "eccrypto": "^1.1.6",
+    "noble-secp256k1": "^1.2.14",
+    "node-forge": "^1.3.1",
+    "secp256k1": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/eccrypto": "^1.1.6",
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3"
+  }
+}
