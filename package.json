@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "encrypt": "tsx ./src/encrypt.ts",
-    "decrypt": "tsx ./src/decrypt.ts"
+    "encrypt": "tsx ./src/core/encrypt.ts",
+    "decrypt": "tsx ./src/core/decrypt.ts"
   },
   "keywords": [],
   "author": "",
