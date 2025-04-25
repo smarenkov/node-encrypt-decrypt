@@ -15,6 +15,17 @@ npm install
 
 ## Usage
 
+### Customize Sample JSON
+
+Edit `src/config.ts` to modify the sample JSON data:
+
+```typescript
+export const SAMPLE_JSON = {
+  name: "Simon",
+  website: "https://smarenkov.github.io",
+};
+```
+
 ### Encrypt JSON Data
 
 ```bash
@@ -34,7 +45,7 @@ npm run decrypt -- -privateKeyHex <key> -ivHex <iv> -encryptedHex <encryptedData
 
 For example:
 ```bash
-npm run decrypt -- -privateKeyHex 16d29211f56b2cfdf8e1ef81d699397ea6bc56b3d66dcb484fd62eaa336181a4 -ivHex a81e7492654374bb704a151895e64455 -encryptedHex 9afe9a5bf9744768ad5f2e4d23344581287e40a0aad69b2f08949d68a0fc769d
+npm run decrypt -- -privateKeyHex 7cea2a87a699ec9d069894454c6af2fa85ba35430e94e81ef9df149a684aecb1 -ivHex 26e1e513bd134ab173d66f380710a279 -encryptedHex 48595446c4c79909526aa6195a5d5115e6623c6967a1fb34339d239ef5447f50958a81128c6d994510ead135938603e73db947f771e27c28a4d879f97da4fcf5
 ```
 
 This will:

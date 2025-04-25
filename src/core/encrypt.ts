@@ -1,13 +1,8 @@
 import { createCipheriv, randomBytes } from "crypto";
-
-const AES_ALGO = "aes-256-cbc";
-
-const json = {
-  name: "Simon",
-};
+import { AES_ALGO, SAMPLE_JSON } from "../config.js";
 
 try {
-  const data = Buffer.from(JSON.stringify(json), "utf8");
+  const data = Buffer.from(JSON.stringify(SAMPLE_JSON), "utf8");
 
   const key = randomBytes(32);
   const iv = randomBytes(16);

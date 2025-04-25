@@ -1,17 +1,9 @@
 import { createDecipheriv } from "crypto";
+import { AES_ALGO } from "../config.js";
+import { parseArgs } from "../utils/args.js";
 
 const args = process.argv.slice(2);
-const argMap: { [key: string]: string } = {};
-
-args.forEach((arg, index) => {
-  if (arg.startsWith('-')) {
-    const key = arg.slice(1);
-    const value = args[index + 1];
-    if (value && !value.startsWith('-')) {
-      argMap[key] = value;
-    }
-  }
-});
+const argMap = parseArgs(args);
 
 const privateKeyHex = argMap.privateKeyHex;
 const ivHex = argMap.ivHex;
@@ -23,7 +15,7 @@ if (!privateKeyHex || !ivHex || !encryptedHex) {
 }
 
 try {
-  const decipher = createDecipheriv("aes-256-cbc", Buffer.from(privateKeyHex, "hex"), Buffer.from(ivHex, "hex"));
+  const decipher = createDecipheriv(AES_ALGO, Buffer.from(privateKeyHex, "hex"), Buffer.from(ivHex, "hex"));
   const decrypted = Buffer.concat([decipher.update(Buffer.from(encryptedHex, "hex")), decipher.final()]);
   const object = JSON.parse(decrypted.toString("utf8"));
 
