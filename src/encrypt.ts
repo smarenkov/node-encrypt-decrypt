@@ -7,15 +7,15 @@ const json = {
 };
 
 try {
-const data = Buffer.from(JSON.stringify(json), "utf8");
+  const data = Buffer.from(JSON.stringify(json), "utf8");
 
-const key = randomBytes(32);
-const iv = randomBytes(16);
+  const key = randomBytes(32);
+  const iv = randomBytes(16);
 
-const cipher = createCipheriv(AES_ALGO, key, iv);
-const encrypted = Buffer.concat([cipher.update(data), cipher.final()]);
+  const cipher = createCipheriv(AES_ALGO, key, iv);
+  const encrypted = Buffer.concat([cipher.update(data), cipher.final()]);
 
-console.log("=== Encryption Details ===");
+  console.log("=== Encryption Details ===");
   console.log(`🔑 AES Key:      ${key.toString("hex")}`);
   console.log(`🧂 IV:           ${iv.toString("hex")}`);
   console.log(`📦 Encrypted:    ${encrypted.toString("hex")}`);
