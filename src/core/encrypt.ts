@@ -14,6 +14,9 @@ try {
   console.log(`🔑 AES Key:      ${key.toString("hex")}`);
   console.log(`🧂 IV:           ${iv.toString("hex")}`);
   console.log(`📦 Encrypted:    ${encrypted.toString("hex")}`);
+  console.log("");
+  console.log("▶️  To decrypt, run:");
+  console.log(`npm run decrypt -- -privateKeyHex ${key.toString("hex")} -ivHex ${iv.toString("hex")} -encryptedHex ${encrypted.toString("hex")}`);
   console.log("===========================");
 } catch (error: any) {
   console.error("Error during encryption:", error.message);
